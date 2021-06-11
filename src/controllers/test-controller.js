@@ -2,9 +2,10 @@
 
 module.exports = function(server){
 
+    const app = server.app;
     const mixinsRepository = server.repositories.mixinsRepository;
 
-    server.app.get('/', async function(_req, res){
+    app.get('/', async function(_req, res){
         try {
             let result = await server.connector.get('mixins', {
                 $or: [{
@@ -21,7 +22,7 @@ module.exports = function(server){
     });
 
 
-    server.app.get('/test', async function(req, res){
+    app.get('/test', async function(_req, res){
         try {
             let result = await mixinsRepository.getFirst();
             res.send(JSON.stringify(result));
