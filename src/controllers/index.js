@@ -7,3 +7,10 @@ module.exports = function(app, connector){
         require('./' + name)(app, connector);
     });
 }
+
+
+function useController(app){
+
+}
+
+export default useController; 

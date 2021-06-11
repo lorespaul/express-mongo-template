@@ -2,14 +2,16 @@
   "name": "node-test",
   "version": "1.0.0",
   "description": "mongo interface",
-  "main": "index.js",
+  "type": "module",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node -r esm index.js"
   },
   "author": "Lorenzo Daneo",
   "license": "ISC",
   "dependencies": {
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "file-system": "^2.2.2",
     "mongodb": "^3.6.9"
