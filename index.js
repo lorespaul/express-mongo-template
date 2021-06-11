@@ -1,9 +1,14 @@
 const express = require('express');
-const connector = require('./src/connector/mongo-connector')();
+const connector = require('./src/connector/mongo-connector');
 
-const app = express();
-const port = 3000;
+const server = {
+    connector: connector(),
+    app: express(),
+    port: 3000,
+    repositories: {}
+};
 
-require('./src/controllers')(app, connector);
+require('./src/repositories')(server)
+require('./src/controllers')(server);
 
-app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
+server.app.listen(server.port, () => console.log(`Test mongo app listening on port ${server.port}!`));
