@@ -8,6 +8,10 @@ BaseRepository.prototype.get = async function(query = {}) {
     return await this.connector.get(this.collection, query)
 };
 
+BaseRepository.prototype.insert = async function(doc) { 
+    return await this.connector.insert(this.collection, doc)
+};
+
 
 let fs = require('fs');
 

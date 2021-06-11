@@ -19,7 +19,7 @@ module.exports = function(config = {
     }
 
     let connect = async () => {
-        const client = new MongoClient(url, { useUnifiedTopology: true });
+        const client = new MongoClient(url, { useUnifiedTopology: true, useNewUrlParser: true });
         await client.connect();
         const db = client.db(config.dbname);
         db.client = client;
@@ -44,6 +44,18 @@ module.exports = function(config = {
                 });
             });
             const result = await promise;
+            close(db);
+            return result;
+        },
+        insert: async (collection, doc) => {
+            let db = await connect();
+            let clt = db.collection(collection);
+            let result = null;
+            if(Array.isArray(doc)){
+                result = await clt.insertMany(doc);
+            } else {
+                result = await clt.insertOne(doc);
+            }
             close(db);
             return result;
         }

@@ -2,7 +2,7 @@
 module.exports = function(){
     return {
         collection: 'mixins',
-        _id: -1,
+        _id: null,
         title: null,
         description: null,
     }
